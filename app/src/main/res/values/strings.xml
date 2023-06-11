@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">LocationApp</string>
-    <string name="label_text_monitoramento">Monitorint Current Location</string>
+    <string name="label_text_monitoramento">Monitoring Current Location</string>
     <string name="text_label_loc_fixa">Current location</string>
     <string name="text_button_monitorar_loc">Monitor Current Location</string>
     <string name="text_button_capturar_loc">Get Current Location</string>
@@ -10,7 +10,7 @@
     <string name="monitoring_button">locatual</string>
     <string name="current_button">monitoring</string>
     <string name="zero_latilon">monitoring</string>
-    <string name="ok">Ok</string>
+    <string name="ok">OK</string>
     <string name="atencao">Atenção</string>
     <string name="non">non</string>
 </resources>
