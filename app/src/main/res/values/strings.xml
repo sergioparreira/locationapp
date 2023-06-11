@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">LocationApp</string>
+    <string name="label_text_monitoramento">Localização Atual Monitoramento</string>
+    <string name="text_label_loc_fixa">Localização Atual Fixa</string>
+    <string name="text_button_monitorar_loc">Monitorar Localização Atual</string>
+    <string name="text_button_capturar_loc">Capturar Localização Atual</string>
+    <string name="template_latilon">0.0, 0.0</string>
+</resources>
