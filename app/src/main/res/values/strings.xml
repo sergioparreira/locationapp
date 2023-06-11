@@ -1,8 +1,16 @@
 <resources>
     <string name="app_name">LocationApp</string>
-    <string name="label_text_monitoramento">Localização Atual Monitoramento</string>
-    <string name="text_label_loc_fixa">Localização Atual Fixa</string>
-    <string name="text_button_monitorar_loc">Monitorar Localização Atual</string>
-    <string name="text_button_capturar_loc">Capturar Localização Atual</string>
+    <string name="label_text_monitoramento">Monitorint Current Location</string>
+    <string name="text_label_loc_fixa">Current location</string>
+    <string name="text_button_monitorar_loc">Monitor Current Location</string>
+    <string name="text_button_capturar_loc">Get Current Location</string>
     <string name="template_latilon">0.0, 0.0</string>
+    <string name="first_plan_permission_needed">Foreground permissions are required to use all features</string>
+    <string name="second_plan_permission_needed">Background permissions are required to use all features</string>
+    <string name="monitoring_button">locatual</string>
+    <string name="current_button">monitoring</string>
+    <string name="zero_latilon">monitoring</string>
+    <string name="ok">Ok</string>
+    <string name="atencao">Atenção</string>
+    <string name="non">non</string>
 </resources>
