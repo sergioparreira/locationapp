@@ -1,3 +1,3 @@
 # LocationApp
 
--- Aplicativo que captura e monotira a localização do usuário
+-- Aplicativo que captura e monitora a localização do usuário
