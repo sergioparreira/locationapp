@@ -18,25 +18,41 @@ class MainActivity : AppCompatActivity() {
         Manifest.permission.ACCESS_FINE_LOCATION,
     )
 
+
+    private var buttonClicked = "non"
+
     private val requestMulitplesPermissionLauncher =
-        registerForActivityResult(
-            ActivityResultContracts.RequestMultiplePermissions()
-        ) { permissions: Map<String, Boolean> ->
+        registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions())
+        { permissions ->
             val allGranted = permissions.values.all { it }
             if (allGranted) {
-                capturarLocalizacaoAtual()
+                fluxoLocPermissao()
             } else {
-                onPermissionDeny("É necessário as permissões em primeiro plano para utilizar essa funcionalidade")
+                onPermissionDeny("É necessário as permissões em primeiro plano para utilizar todas as funcionalidade")
             }
         }
 
-    private val requestUniquePermissionLaunche = registerForActivityResult(
+    private val requestUniquePermissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestPermission()
     ) { isGranted: Boolean ->
         if (isGranted) {
-            monitorarLocalizacaoAtual()
+            if (buttonClicked == "monitoramento") {
+                monitorarLocalizacaoAtual()
+            }
         } else {
-            onPermissionDeny("é necessário as permissões em segundo plano e acesso ao tempo todo da localização para utilizar essa funcionalidade")
+            onPermissionDeny("é necessário as permissões em segundo plano para utilizar todas as funcionalidade")
+        }
+    }
+
+    private fun fluxoLocPermissao() {
+        if (buttonClicked == "locatual") {
+            capturarLocalizacaoAtual()
+        } else {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                requestUniquePermissionLauncher.launch(Manifest.permission.ACCESS_BACKGROUND_LOCATION)
+            } else if (buttonClicked == "monitoramento") {
+                monitorarLocalizacaoAtual()
+            }
         }
     }
 
@@ -44,7 +60,7 @@ class MainActivity : AppCompatActivity() {
         Toast.makeText(this, "capturandoLoc", Toast.LENGTH_LONG).show()
     }
 
-    private fun monitorarLocalizacaoAtual(){
+    private fun monitorarLocalizacaoAtual() {
         Toast.makeText(this, "monitorandoLoc", Toast.LENGTH_LONG).show()
     }
 
@@ -57,22 +73,20 @@ class MainActivity : AppCompatActivity() {
 
     private fun onPermissionDeny(message: String) {
         AlertDialog.Builder(this@MainActivity).setTitle("Atenção")
-            .setMessage("O App não funcionará sem as permissões de localizações")
+            .setMessage(message)
             .setPositiveButton("Ok") { dialog, _ -> dialog.dismiss() }
             .show()
     }
 
     private fun onClick() {
         mViewBinding.buttonCapturarLocAtual.setOnClickListener {
+            buttonClicked = "locatual"
             requestMulitplesPermissionLauncher.launch(permissions)
         }
         mViewBinding.buttonMonitorarLocalizacao.setOnClickListener {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                requestUniquePermissionLaunche.launch(Manifest.permission.ACCESS_BACKGROUND_LOCATION)
-            } else {
-                monitorarLocalizacaoAtual()
-            }
+            buttonClicked = "monitoramento"
+            requestMulitplesPermissionLauncher.launch(permissions)
         }
     }
-
 }
+
